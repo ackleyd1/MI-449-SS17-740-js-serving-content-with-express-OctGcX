@@ -47,33 +47,13 @@ app.get('/', function (request, response) {
   })
 })
 
-// for (var game in games) {
-//   app.get(game.link, function (request, response) {
-//     response.render('pages/game', {
-//       games: games,
-//       game: game
-//     })
-//   })
-// }
-
-app.get('/pikmin', function (request, response) {
-  response.render('pages/game', {
-    games: games,
-    game: games[0]
-  })
-})
-
-app.get('/melee', function (request, response) {
-  response.render('pages/game', {
-    games: games,
-    game: games[1]
-  })
-})
-
-app.get('/windwaker', function (request, response) {
-  response.render('pages/game', {
-    games: games,
-    game: games[2]
+Object.keys(games).forEach(function (gameId) {
+  var game = games[gameId]
+  app.get(game.link, function (request, response) {
+    response.render('pages/game', {
+      games: games,
+      game: game
+    })
   })
 })
 
